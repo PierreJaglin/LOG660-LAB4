@@ -1,8 +1,9 @@
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -17,5 +18,10 @@ public class Main {
 
         System.out.println("Resultat Pour: " + groupeAgeInput + " - " + provinceInput + " - " +
                 jourSemaineInput + " - " + moisInput);
+
+        ConnectionBD connectionBD = new ConnectionBD();
+        //connectionBD.requeteAnalytique(groupeAgeInput, provinceInput, jourSemaineInput, moisInput);
+
+        connectionBD.fermerConnectionDB();
     }
 }
