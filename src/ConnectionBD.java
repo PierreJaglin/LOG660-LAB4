@@ -13,21 +13,20 @@ public class ConnectionBD {
 
         Statement statement = connection.createStatement();
 
-        String sqlQuery = "SELECT COUNT(*) FROM F_LOCATIONFILM l, D_CLIENT c, D_TEMPS t, WHERE " +
+        String sqlQuery = "SELECT COUNT(*) FROM F_LOCATIONFILM l, D_CLIENT c, D_TEMPS t WHERE " +
                 "l.IDCLIENT = c.IDCLIENT AND l.IDTEMPS = t.IDTEMPS";
 
         if(!groupeAgeInput.toUpperCase().equals("TOUS") || groupeAgeInput == null) {
-            int groupeAge = Integer.parseInt(groupeAgeInput);
-            sqlQuery += " AND c.GROUPEAGE =" + groupeAge;
+            sqlQuery += " AND c.GROUPEAGE = '" + groupeAgeInput + "'";
         }
         if(!provinceInput.toUpperCase().equals("TOUS") || provinceInput == null) {
             sqlQuery += " AND UPPER(c.PROVINCE) = '" + provinceInput.toUpperCase() + "'";
         }
         if(!provinceInput.toUpperCase().equals("TOUS") || jourSemaineInput == null) {
-            sqlQuery += " AND d.JOURSEMAINE = '" + jourSemaineInput + "'";
+            sqlQuery += " AND t.JOURSEMAINE = '" + jourSemaineInput + "'";
         }
         if(!moisInput.toUpperCase().equals("TOUS") || moisInput == null) {
-            sqlQuery += " AND d.MOIS = '" + moisInput + "'";
+            sqlQuery += " AND t.MOIS = '" + moisInput + "'";
         }
 
         ResultSet query = statement.executeQuery(sqlQuery);
